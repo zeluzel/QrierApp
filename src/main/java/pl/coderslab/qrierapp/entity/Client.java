@@ -1,7 +1,6 @@
 package pl.coderslab.qrierapp.entity;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,9 +20,9 @@ public class Client implements EntityModel {
     private String alias;
     private String phone;
 
-    @OneToMany(mappedBy = "client")
-    private List<Address> address;
+    @OneToOne
+    private Address address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "payer")
     private List<Order> ordersList;
 }

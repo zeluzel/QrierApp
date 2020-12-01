@@ -20,7 +20,7 @@ public class Courier implements EntityModel {
     private String phone;
     private Boolean active;
 
-    @OneToMany
+    @OneToMany(mappedBy = "courier")
     private List<Order> orders;
 
 }

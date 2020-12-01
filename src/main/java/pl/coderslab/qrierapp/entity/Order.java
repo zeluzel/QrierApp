@@ -14,18 +14,21 @@ public class Order implements EntityModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @OneToOne
-    private Client sender;
+    @ManyToOne
+    private Address sender;
 
-    @OneToOne
-    private Client receiver;
+    @ManyToOne
+    private Address receiver;
+
+    @ManyToOne
+    private Client payer;
 
     private Double price;
 
 //    @PrePersist
 //    private LocalDateTime created;
 
-    @OneToOne
+    @ManyToOne
     private Courier courier;
 
     private OrderStatus status;
