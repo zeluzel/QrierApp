@@ -1,6 +1,8 @@
 package pl.coderslab.qrierapp.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "addresses")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address implements EntityModel {
 
     @Id
@@ -30,4 +34,9 @@ public class Address implements EntityModel {
     @OneToOne(mappedBy = "address")
     private Client client;
 
+    public Address(String street, Integer houseNumber, String city) {
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.city = city;
+    }
 }

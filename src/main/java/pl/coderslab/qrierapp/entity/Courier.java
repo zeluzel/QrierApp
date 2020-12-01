@@ -1,6 +1,8 @@
 package pl.coderslab.qrierapp.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "couriers")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Courier implements EntityModel {
 
     @Id
@@ -23,4 +27,9 @@ public class Courier implements EntityModel {
     @OneToMany(mappedBy = "courier")
     private List<Order> orders;
 
+    public Courier(String firstName, String lastName, String alias) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.alias = alias;
+    }
 }
