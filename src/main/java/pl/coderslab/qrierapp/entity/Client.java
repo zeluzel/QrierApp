@@ -30,8 +30,12 @@ public class Client implements EntityModel {
     @OneToMany(mappedBy = "payer")
     private List<Order> ordersList;
 
-    public Client(String companyName, Address address) {
+    public Client(String companyName, String firstName, String lastName, String alias, String phone, Address address) {
         this.companyName = companyName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.alias = alias;
+        this.phone = phone;
         this.address = address;
     }
 }
