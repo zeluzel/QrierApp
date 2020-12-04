@@ -31,4 +31,9 @@ public class CourierServiceImpl implements CourierService {
     public List<Courier> findAll() {
         return courierRepository.findAll();
     }
+
+    @Override
+    public List<Courier> getActiveCouriers() {
+        return courierRepository.getAllByActiveIsTrue();
+    }
 }

@@ -7,7 +7,10 @@ import java.util.List;
 public interface CourierService {
 
     void save(Courier courier);
+
     Courier findById(Long id);
+
     List<Courier> findAll();
 
+    List<Courier> getActiveCouriers();
 }

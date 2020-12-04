@@ -13,10 +13,10 @@ public class AddressFixture {
     private final AddressService addressService;
 
     List<Address> addresses = List.of(
-            new Address("Ksawerego Liskego", 7, null, "53-123", "Wrocław", ""),
+            new Address("Ksawerego Liskego", 7, 13, "53-123", "Wrocław", null),
             new Address("Dąbrowskiego", 44, null, "52-543", "Wrocław", null),
             new Address("Graniczna", 8, null, "12-587", "Wrocław", null),
-            new Address("Rydygiera", 1, 1, "13-755", "Wrocław", null)
+            new Address("Rydygiera", 1, 1, "13-755", "Wrocław", "fajne ziomeczki")
     );
 
     @Autowired
