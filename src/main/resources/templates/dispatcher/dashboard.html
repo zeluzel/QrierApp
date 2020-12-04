@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QrierApp</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Order details</th>
+        <th>Addresses</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody th:each="order: ${activeOrders}" th:object="${order}">
+    <tr>
+        <th rowspan="2">
+            <ul>
+                <li th:text="|ID: *{id}|">Order id</li>
+                <li th:text="|Date: *{createdOn}|">Date of creation</li>
+                <li th:text="|Client: *{payer}|">Client</li>
+                <li th:text="|Price: *{price}|">Price</li>
+                <li th:text="*{notes}">Notes</li>
+            </ul>
+        </th>
+        <td>From:
+            <ul>
+                <li th:text="|*{sender.street} *{sender.houseNumber}|">
+                    <span th:if="${order.sender.apartamentNumber != null}" th:text="| / *{sender.apartamentNumber}|"/>
+                </li>
+            </ul>
+        </td>
+        <td rowspan="2">Actions:
+            <ul>
+                <li>
+                    <button>Assign courier</button>
+                </li>
+                <li>
+                    <button>Edit</button>
+                </li>
+                <li>
+                    <button>Mark as finished</button>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>To:
+            <ul>
+                <li th:text="|*{receiver.street} *{receiver.houseNumber}|">
+                    <span th:if="${order.receiver.apartamentNumber != null}" th:text="| / *{receiver.apartamentNumber}|"/>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
