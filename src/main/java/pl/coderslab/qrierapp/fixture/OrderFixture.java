@@ -22,7 +22,8 @@ public class OrderFixture {
     private List<Order> orders = List.of(
             new Order(15d, OrderStatus.ORDERED, "śpieszy się"),
             new Order(15d, OrderStatus.ORDERED, "nie śpieszy się"),
-            new Order(15d, OrderStatus.ORDERED, "proszę nie trzaskać drzwiami")
+            new Order(15d, OrderStatus.ORDERED, "proszę nie trzaskać drzwiami"),
+            new Order(20d, OrderStatus.FINISHED, "już zrobione")
     );
 
     @Autowired
@@ -46,7 +47,7 @@ public class OrderFixture {
             order.setCourier(couriers.get(random.nextInt(couriers.size())));
             order.setPayer(clients.get(random.nextInt(clients.size())));
             order.setSender(addresses.get(random.nextInt(addresses.size())));
-//            while (order.getSender().equals(order.getReceiver())) {
+//            while (order.getSender().equals(order.getReceiver())) {  // lazy initialization
                 order.setReceiver(addresses.get(random.nextInt(addresses.size())));
 //            }
             orderService.save(order);

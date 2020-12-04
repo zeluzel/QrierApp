@@ -7,7 +7,6 @@ import pl.coderslab.qrierapp.repository.CourierRepository;
 
 import java.util.List;
 
-
 @Service
 public class CourierServiceImpl implements CourierService {
 

@@ -38,4 +38,14 @@ public class Client implements EntityModel {
         this.phone = phone;
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "companyName='" + companyName + "\'\n" +
+                ", firstName='" + firstName + "\'\n" +
+                ", lastName='" + lastName + "\'\n" +
+                ", phone='" + phone + "\'\n" +
+                '}';
+    }
 }

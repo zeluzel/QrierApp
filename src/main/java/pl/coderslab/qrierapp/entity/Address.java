@@ -34,9 +34,12 @@ public class Address implements EntityModel {
     @OneToOne(mappedBy = "address")
     private Client client;
 
-    public Address(String street, Integer houseNumber, String city) {
+    public Address(String street, Integer houseNumber, Integer apartamentNumber, String zipCode, String city, String notes) {
         this.street = street;
         this.houseNumber = houseNumber;
+        this.apartamentNumber = apartamentNumber;
+        this.zipCode = zipCode;
         this.city = city;
+        this.notes = notes;
     }
 }

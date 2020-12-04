@@ -3,8 +3,10 @@ package pl.coderslab.qrierapp.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
@@ -28,13 +30,25 @@ public class Order implements EntityModel {
 
     private Double price;
 
-//    @PrePersist
-//    private LocalDateTime created;
+    private LocalDateTime createdOn;
 
     @ManyToOne
     private Courier courier;
 
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
+
     private String notes;
+
+    public Order(Double price, OrderStatus status, String notes) {
+        this.price = price;
+        this.status = status;
+        this.notes = notes;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdOn = LocalDateTime.now();
+    }
 
 }
