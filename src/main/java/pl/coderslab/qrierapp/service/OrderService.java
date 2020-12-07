@@ -14,4 +14,5 @@ public interface OrderService {
 
     List<Order> getActiveOrders();
 
+    void assignCourier(Long orderId, Long courierId);
 }

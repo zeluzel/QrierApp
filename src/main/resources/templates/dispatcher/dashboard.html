@@ -43,30 +43,18 @@
                 <li th:text="|Assigned courier: *{courier.alias}|"></li>
                 <li>
                     <!--TODO -->
-                    <!-- JS event listener                    -->
-                    <!-- wyświetlanie właściwego kuriera w selekcie                   -->
-<!--                    próba bindowania do obiektu order-->
-<!--                    nie da się, bo nie jest atrybutem żądania-->
-<!--                    <form th:action="@{/dispatcher/assignCourier}" th:object="${order}" method="post">-->
-<!--                        <label for="assignCourier">Choose a courier</label><br>-->
-<!--                        <select id="assignCourier">-->
-<!--                            <option th:each="courier : ${activeCouriers}"-->
-<!--                                    th:value="*{courier}" th:text="${courier.alias}"-->
-<!--                                    th:selected="${order.courier}" name="courier"></option>-->
-<!--                        </select>-->
-<!--                        <button type="submit">Assign to order</button>-->
-<!--                   </form>-->
+                    <!-- JS event listener (bez przycisku)                    -->
+                    <!-- wyświetlanie przypisanego kuriera bezpośrednio w selekcie                   -->
                     <form th:action="@{/dispatcher/assignCourier}" method="post">
-                        <!--                        <input type="hidden" name="orderId" th:text="*{id}">-->
+                        <input type="hidden" th:value="${order.id}" name="orderId"/>
                         <label for="assignCourier">Choose a courier</label><br>
-                        <select id="assignCourier">
+                        <select id="assignCourier" name="courierId">
                             <option th:each="courier : ${activeCouriers}"
-                                    th:value="*{courier}" th:text="${courier.alias}"
-                                    th:selected="${order.courier}" name="courier"></option>
+                                    th:value="${courier.id}" th:text="${courier.alias}"
+                                    th:selected="${order.courier.id == courier.id}"></option>
                         </select>
-                        <!-- Required Courier parameter 'courier' is not present]                       -->
                         <button type="submit">Assign to order</button>
-                    </form>
+                   </form>
                 </li>
                 <li>
                     <button>Edit</button>
