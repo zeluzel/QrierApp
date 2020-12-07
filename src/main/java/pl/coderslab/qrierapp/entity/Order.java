@@ -51,4 +51,14 @@ public class Order implements EntityModel {
         createdOn = LocalDateTime.now();
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "Id=" + Id +
+                ", price=" + price +
+                ", createdOn=" + createdOn +
+                ", status=" + status +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }

@@ -42,4 +42,17 @@ public class Address implements EntityModel {
         this.city = city;
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", houseNumber=" + houseNumber +
+                ", apartamentNumber=" + apartamentNumber +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }

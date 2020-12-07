@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.qrierapp.entity.Courier;
+import pl.coderslab.qrierapp.entity.Order;
 import pl.coderslab.qrierapp.service.AddressService;
 import pl.coderslab.qrierapp.service.ClientService;
 import pl.coderslab.qrierapp.service.CourierService;
@@ -33,6 +37,18 @@ public class DispatcherController {
         model.addAttribute("activeCouriers", courierService.getActiveCouriers());
         return "dispatcher/dashboard";
     }
+
+//    @PostMapping("assignCourier")
+//    public String assignCourier(Order order) {
+//        orderService.save(order);
+//        return "redirect:";
+//    }
+
+@PostMapping("assignCourier")
+public String assignCourier(@RequestParam Courier courier) {
+    return "redirect:";
+}
+
 
 //    @ModelAttribute("activeOrders")
 //    public List<Order> loadActiveOrders() {
