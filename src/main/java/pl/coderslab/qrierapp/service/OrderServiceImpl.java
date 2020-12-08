@@ -62,4 +62,14 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(orderToUpdate);
     }
 
+    @Override
+    public List<Order> getFinishedOrdersForCourier(Courier courier) {
+        return orderRepository.findFinishedOrdersForCourier(courier);
+    }
+
+    @Override
+    public List<Order> getOrdersByStatus(OrderStatus orderStatus) {
+        return orderRepository.getOrdersByStatus(orderStatus);
+    }
+
 }

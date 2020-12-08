@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>QrierApp</title>
+    <title>Qrier App</title>
 </head>
 <body>
 <table>
@@ -12,11 +12,11 @@
     <tr>
         <th>Order details</th>
         <th>Addresses</th>
-        <th>Actions</th>
+        <th>Courier</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="order: ${activeOrders}" th:object="${order}">
+    <tr th:each="order: ${finishedOrders}" th:object="${order}">
         <th>
             <ul>
                 <li th:text="|ID: *{id}|">Order id</li>
@@ -47,32 +47,7 @@
                 <li th:if="*{receiver.notes != null}" th:text="|Notes: *{receiver.notes}|"></li>
             </ul>
         </td>
-        <td>
-            <ul>
-                <li th:text="|Assigned courier: *{courier.alias}|"></li>
-                <li>
-                    <!--TODO -->
-                    <!-- JS event listener (bez przycisku)                    -->
-                    <!-- wyświetlanie przypisanego kuriera bezpośrednio w selekcie                   -->
-                    <form th:action="@{/dispatcher/assignCourier}" method="post">
-                        <input type="hidden" th:value="${order.id}" name="orderId"/>
-                        <label for="assignCourier">Choose a courier</label><br>
-                        <select id="assignCourier" name="courierId">
-                            <option th:each="courier : ${activeCouriers}"
-                                    th:value="${courier.id}" th:text="${courier.alias}"
-                                    th:selected="${order.courier.id == courier.id}"></option>
-                        </select>
-                        <button type="submit">Assign to order</button>
-                   </form>
-                </li>
-                <li>
-                    <button>Edit</button>
-                </li>
-                <li>
-                    <button>Mark as finished</button>
-                </li>
-            </ul>
-        </td>
+        <td th:text="*{courier.alias}"></td>
     </tr>
     </tbody>
 </table>

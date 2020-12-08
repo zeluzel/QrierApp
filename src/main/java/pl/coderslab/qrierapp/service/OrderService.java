@@ -21,4 +21,8 @@ public interface OrderService {
     List<Order> getActiveOrdersForCourier(Courier courier);
 
     void changeOrderStatus(Long orderId, OrderStatus orderStatus);
+
+    List<Order> getFinishedOrdersForCourier(Courier courier);
+
+    List<Order> getOrdersByStatus(OrderStatus orderStatus);
 }

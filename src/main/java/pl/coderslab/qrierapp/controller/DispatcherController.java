@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.qrierapp.dto.AssignCourierToOrder;
-import pl.coderslab.qrierapp.entity.Courier;
+import pl.coderslab.qrierapp.entity.OrderStatus;
 import pl.coderslab.qrierapp.service.AddressService;
 import pl.coderslab.qrierapp.service.ClientService;
 import pl.coderslab.qrierapp.service.CourierService;
@@ -23,7 +23,6 @@ public class DispatcherController {
     private final AddressService addressService;
     private final ClientService clientService;
     private final OrderService orderService;
-    private final Logger logger = LoggerFactory.getLogger(DispatcherController.class);
 
     @Autowired
     public DispatcherController(CourierService courierService,
@@ -40,13 +39,19 @@ public class DispatcherController {
     public String listActiveOrders(Model model) {
         model.addAttribute("activeOrders", orderService.getActiveOrders());
         model.addAttribute("activeCouriers", courierService.getActiveCouriers());
-        return "dispatcher/dashboard";
+        return "dispatcher/activeOrders";
     }
 
-    @PostMapping("assignCourier")
+    @PostMapping("/assignCourier")
     public String assignCourier(AssignCourierToOrder command) {
         orderService.assignCourier(command.getOrderId(), command.getCourierId());
         return "redirect:";
+    }
+
+    @GetMapping("/finishedOrders")
+    public String listFinishedOrders(Model model) {
+        model.addAttribute("finishedOrders", orderService.getOrdersByStatus(OrderStatus.FINISHED));
+        return "dispatcher/finishedOrders";
     }
 
 }
