@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.qrierapp.entity.Courier;
 import pl.coderslab.qrierapp.entity.Order;
+import pl.coderslab.qrierapp.entity.OrderStatus;
 import pl.coderslab.qrierapp.repository.CourierRepository;
 import pl.coderslab.qrierapp.repository.OrderRepository;
 
@@ -47,6 +48,18 @@ public class OrderServiceImpl implements OrderService {
         Courier courierToAssign = courierRepository.getOne(courierId);
         order.setCourier(courierToAssign);
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getActiveOrdersForCourier(Courier courier) {
+        return orderRepository.findActiveOrdersForCourier(courier);
+    }
+
+    @Override
+    public void changeOrderStatus(Long orderId, OrderStatus orderStatus) {
+        Order orderToUpdate = orderRepository.getOne(orderId);
+        orderToUpdate.setStatus(orderStatus);
+        orderRepository.save(orderToUpdate);
     }
 
 }

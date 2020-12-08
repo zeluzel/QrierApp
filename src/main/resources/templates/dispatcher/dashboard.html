@@ -15,10 +15,9 @@
         <th>Actions</th>
     </tr>
     </thead>
-    <!--    FIXME tag tbody dla każdego wiersza-->
-    <tbody th:each="order: ${activeOrders}" th:object="${order}">
-    <tr>
-        <th rowspan="2">
+    <tbody>
+    <tr th:each="order: ${activeOrders}" th:object="${order}">
+        <th>
             <ul>
                 <li th:text="|ID: *{id}|">Order id</li>
                 <li th:text="|Date: *{createdOn}|">Date of creation</li>
@@ -27,8 +26,8 @@
                 <li th:text="*{notes}">Notes</li>
             </ul>
         </th>
-        <td>From:
-            <ul>
+        <td>
+            <ul>From:
                 <li>
                     <span th:text="|*{sender.street} *{sender.houseNumber}|"></span>
                     <span th:if="*{sender.apartamentNumber != null}"
@@ -37,8 +36,18 @@
                 <li th:text="|*{sender.zipCode} *{sender.city}|"></li>
                 <li th:if="*{sender.notes != null}" th:text="|Notes: *{sender.notes}|"></li>
             </ul>
+            <br>
+            <ul>To:
+                <li>
+                    <span th:text="|*{receiver.street} *{receiver.houseNumber}|"></span>
+                    <span th:if="*{receiver.apartamentNumber != null}"
+                          th:text="| / *{receiver.apartamentNumber}|"></span>
+                </li>
+                <li th:text="|*{receiver.zipCode} *{receiver.city}|"></li>
+                <li th:if="*{receiver.notes != null}" th:text="|Notes: *{receiver.notes}|"></li>
+            </ul>
         </td>
-        <td rowspan="2">
+        <td>
             <ul>
                 <li th:text="|Assigned courier: *{courier.alias}|"></li>
                 <li>
@@ -62,19 +71,6 @@
                 <li>
                     <button>Mark as finished</button>
                 </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>To:
-            <ul>
-                <li>
-                    <span th:text="|*{receiver.street} *{receiver.houseNumber}|"></span>
-                    <span th:if="*{receiver.apartamentNumber != null}"
-                          th:text="| / *{receiver.apartamentNumber}|"></span>
-                </li>
-                <li th:text="|*{receiver.zipCode} *{receiver.city}|"></li>
-                <li th:if="*{receiver.notes != null}" th:text="|Notes: *{receiver.notes}|"></li>
             </ul>
         </td>
     </tr>
