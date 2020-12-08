@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.qrierapp.dto.AssignCourierToOrder;
+import pl.coderslab.qrierapp.entity.Order;
 import pl.coderslab.qrierapp.entity.OrderStatus;
 import pl.coderslab.qrierapp.service.AddressService;
 import pl.coderslab.qrierapp.service.ClientService;
@@ -52,6 +53,13 @@ public class DispatcherController {
     public String listFinishedOrders(Model model) {
         model.addAttribute("finishedOrders", orderService.getOrdersByStatus(OrderStatus.FINISHED));
         return "dispatcher/finishedOrders";
+    }
+
+    @GetMapping("/addOrder")
+    public String addOrder(Model model) {
+        model.addAttribute("clients", clientService.findAll());
+        model.addAttribute("newOrder", new Order());
+        return "dispatcher/addOrder";
     }
 
 }

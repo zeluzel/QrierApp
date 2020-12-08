@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Qrier App</title>
+</head>
+<body>
+<form th:action="@{/dispatcher}" method="post" th:object="${newOrder}">
+    <div> Client:
+        <select th:field="*{payer}">
+            <option th:each="client : ${clients}" th:text="${client.alias}"></option>
+        </select>
+    </div>
+    <table>
+        <tr>
+            <th>Sender</th>
+            <th>Receiver</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" th:field="*{sender.street}" placeholder="street"/>
+                <input type="number" th:field="*{sender.houseNumber}" placeholder="house number"/>
+                <input type="number" th:field="*{sender.apartamentNumber}" placeholder="apartament number"/>
+                <input type="text" th:field="*{sender.zipCode}" placeholder="zipcode"/>
+                <input type="text" th:field="*{sender.city}" placeholder="city"/>
+                <textarea th:field="*{sender.notes}" placeholder="notes"/>
+            </td>
+            <td>
+
+
+            </td>
+            <td>
+
+
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+</body>
+</html>

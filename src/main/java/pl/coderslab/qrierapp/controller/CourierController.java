@@ -34,7 +34,7 @@ public class CourierController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public String listActiveOrders(Model model) {
 //        TODO pobieranie kuriera z sesji
         courier = courierService.findById(1L);
