@@ -13,7 +13,7 @@ public class CourierFixture {
     private final CourierService courierService;
 
     private final List<Courier> couriers = List.of(
-            new Courier(null, "Paweł", "Znamirowski", "Żelu", "123123", false, null),
+            new Courier(null, "Paweł", "Znamirowski", "Żelu", "123123", true, null),
             new Courier(null, "Judyta", "Zelisko", "Dżudi", "123312312", true, null),
             new Courier(null, "Krystian", "Jakubek", "Tajger", "123123", true, null),
             new Courier(null, "Michał", "Hejne", "Majkel", "654321", true, null),

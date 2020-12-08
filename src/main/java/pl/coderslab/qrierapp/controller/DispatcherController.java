@@ -1,5 +1,7 @@
 package pl.coderslab.qrierapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +23,13 @@ public class DispatcherController {
     private final AddressService addressService;
     private final ClientService clientService;
     private final OrderService orderService;
+    private final Logger logger = LoggerFactory.getLogger(DispatcherController.class);
 
     @Autowired
-    public DispatcherController(CourierService courierService, AddressService addressService, ClientService clientService, OrderService orderService) {
+    public DispatcherController(CourierService courierService,
+                                AddressService addressService,
+                                ClientService clientService,
+                                OrderService orderService) {
         this.courierService = courierService;
         this.addressService = addressService;
         this.clientService = clientService;
@@ -39,7 +45,6 @@ public class DispatcherController {
 
     @PostMapping("assignCourier")
     public String assignCourier(AssignCourierToOrder command) {
-        Courier courierToAssign = courierService.findById(command.getCourierId());
         orderService.assignCourier(command.getOrderId(), command.getCourierId());
         return "redirect:";
     }

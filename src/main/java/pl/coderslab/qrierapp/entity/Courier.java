@@ -32,4 +32,17 @@ public class Courier implements EntityModel {
         this.lastName = lastName;
         this.alias = alias;
     }
+
+    @Override
+    public String toString() {
+        return "Courier{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", alias='" + alias + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                '}';
+    }
+
 }
