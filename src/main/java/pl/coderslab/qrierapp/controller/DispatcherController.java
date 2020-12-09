@@ -1,7 +1,6 @@
 package pl.coderslab.qrierapp.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ import pl.coderslab.qrierapp.service.OrderService;
 
 @Controller
 @RequestMapping("/dispatcher")
+@Slf4j
 public class DispatcherController {
 
     private final CourierService courierService;
@@ -38,6 +38,7 @@ public class DispatcherController {
 
     @GetMapping("")
     public String listActiveOrders(Model model) {
+        log.debug("Accessing dispatcher's active orders page");
         model.addAttribute("activeOrders", orderService.getActiveOrders());
         model.addAttribute("activeCouriers", courierService.getActiveCouriers());
         return "dispatcher/activeOrders";
@@ -45,21 +46,31 @@ public class DispatcherController {
 
     @PostMapping("/assignCourier")
     public String assignCourier(AssignCourierToOrder command) {
+        log.debug("Assigning courier {} to order {}", command.getCourierId(), command.getOrderId());
         orderService.assignCourier(command.getOrderId(), command.getCourierId());
         return "redirect:";
     }
 
     @GetMapping("/finishedOrders")
     public String listFinishedOrders(Model model) {
+        log.debug("Accessing dispatcher's finished orders page");
         model.addAttribute("finishedOrders", orderService.getOrdersByStatus(OrderStatus.FINISHED));
         return "dispatcher/finishedOrders";
     }
 
     @GetMapping("/addOrder")
     public String addOrder(Model model) {
+        log.debug("Accessing dispatcher's add order page");
         model.addAttribute("clients", clientService.findAll());
         model.addAttribute("newOrder", new Order());
         return "dispatcher/addOrder";
+    }
+
+    @PostMapping("/addOrder")
+    public String addOrder(Order newOrder) {
+        log.debug("Adding new order: {}", newOrder);
+        orderService.save(newOrder);
+        return "redirect:";
     }
 
 }

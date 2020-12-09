@@ -7,12 +7,21 @@
     <title>Qrier App</title>
 </head>
 <body>
-<form th:action="@{/dispatcher}" method="post" th:object="${newOrder}">
-    <div> Client:
-        <select th:field="*{payer}">
-            <option th:each="client : ${clients}" th:text="${client.alias}"></option>
-        </select>
+<form th:action="@{/dispatcher/addOrder}" method="post" th:object="${newOrder}">
+    <h2>Client</h2>
+    <div>
+        <label>Choose from existing:
+            <select name="payer" th:field="*{payer}">
+                <option th:each="client : ${clients}" th:text="${client.alias}" th:value="${client}"></option>
+            </select>
+        </label>
+<!--        <a th:href="@{/addClient}">...or add a new client</a>-->
+        <br>
+        <label>Price:
+            <input type="number" name="price" th:field="*{price}"/>
+        </label>
     </div>
+    <h2>Addresses:</h2>
     <table>
         <tr>
             <th>Sender</th>
@@ -20,23 +29,47 @@
         </tr>
         <tr>
             <td>
-                <input type="text" th:field="*{sender.street}" placeholder="street"/>
-                <input type="number" th:field="*{sender.houseNumber}" placeholder="house number"/>
-                <input type="number" th:field="*{sender.apartamentNumber}" placeholder="apartament number"/>
-                <input type="text" th:field="*{sender.zipCode}" placeholder="zipcode"/>
-                <input type="text" th:field="*{sender.city}" placeholder="city"/>
-                <textarea th:field="*{sender.notes}" placeholder="notes"/>
+                <label>Street:
+                    <input type="text" name="senderStreet" th:field="*{sender.street}" placeholder="street"/>
+                    <input type="number" name="senderHouseNumber" th:field="*{sender.houseNumber}"
+                           placeholder="house number"/>
+                    <input type="number" name="senderApartamentNumber" th:field="*{sender.apartamentNumber}"
+                           placeholder="apartament number"/>
+                </label>
+                <br>
+                <label>City:
+                    <input type="text" name="senderZipCode" th:field="*{sender.zipCode}" placeholder="zipcode"/>
+                    <input type="text" name="senderCity" th:field="*{sender.city}" placeholder="city"/>
+                </label>
+                <br>
+                <label>Notes:
+                    <textarea name="senderNotes" th:field="*{sender.notes}"
+                              placeholder="ex. floor, special instructions, ..."/>
+                </label>
             </td>
             <td>
-
-
-            </td>
-            <td>
-
+                <label>Street:
+                    <input type="text" name="receiverStreet" th:field="*{receiver.street}" placeholder="street"/>
+                    <input type="number" name="receiverHouseNumber" th:field="*{receiver.houseNumber}"
+                           placeholder="house number"/>
+                    <input type="number" name="receiverApartamentNumber" th:field="*{receiver.apartamentNumber}"
+                           placeholder="apartament number"/>
+                </label>
+                <br>
+                <label>City:
+                    <input type="text" name="receiverZipCode" th:field="*{receiver.zipCode}" placeholder="zipcode"/>
+                    <input type="text" name="receiverCity" th:field="*{receiver.city}" placeholder="city"/>
+                </label>
+                <br>
+                <label>Notes:
+                    <textarea name="receiverNotes" th:field="*{receiver.notes}"
+                              placeholder="ex. floor, special instructions, ..."/>
+                </label>
 
             </td>
         </tr>
     </table>
+    <button type="submit">Add order</button>
 </form>
 
 
