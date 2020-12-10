@@ -7,8 +7,9 @@
     <title>QrierApp</title>
 </head>
 <body>
-<a th:href="@{finishedOrders}">Go to finished orders</a>
-<a th:href="@{addOrder}">Add new order</a>
+<!--<header th:insert="fragments/header.html :: header"> </header>-->
+<a th:href="@{/dispatcher/finishedOrders}">Go to finished orders</a>
+<a th:href="@{/dispatcher/addOrder}">Add new order</a>
 <table>
     <thead>
     <tr>
@@ -51,7 +52,8 @@
         </td>
         <td>
             <ul>
-                <li th:text="|Assigned courier: *{courier.alias}|"></li>
+<!--                <li th:text="|Assigned courier: *{courier.alias}|"></li>-->
+                <li th:text="|Assigned courier: ${order.courier == null? 'none' : order.courier.alias}|"></li>
                 <li>
                     <!--TODO -->
                     <!-- JS event listener (bez przycisku)                    -->
@@ -61,17 +63,15 @@
                         <label for="assignCourier">Choose a courier</label><br>
                         <select id="assignCourier" name="courierId">
                             <option th:each="courier : ${activeCouriers}"
-                                    th:value="${courier.id}" th:text="${courier.alias}"
-                                    th:selected="${order.courier.id == courier.id}"></option>
+                                    th:value="${courier.id}" th:text="${courier.alias}">
+<!--                                    th:selected="${order.courier.id == courier.id}"        -->
+                            </option>
                         </select>
                         <button type="submit">Assign to order</button>
                    </form>
                 </li>
                 <li>
                     <button>Edit</button>
-                </li>
-                <li>
-                    <button>Mark as finished</button>
                 </li>
             </ul>
         </td>

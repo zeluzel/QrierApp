@@ -12,13 +12,16 @@
     <div>
         <label>Choose from existing:
             <select name="payer" th:field="*{payer}">
-                <option th:each="client : ${clients}" th:text="${client.alias}" th:value="${client}"></option>
+                <option th:each="client : ${clients}" th:text="${client.alias}" th:value="${client.id}"></option>
             </select>
         </label>
-<!--        <a th:href="@{/addClient}">...or add a new client</a>-->
+        <!--        <a th:href="@{/addClient}">...or add a new client</a>-->
         <br>
         <label>Price:
             <input type="number" name="price" th:field="*{price}"/>
+        </label>
+        <label>Notes
+            <textarea th:field="notes"></textarea>
         </label>
     </div>
     <h2>Addresses:</h2>
@@ -44,7 +47,7 @@
                 <br>
                 <label>Notes:
                     <textarea name="senderNotes" th:field="*{sender.notes}"
-                              placeholder="ex. floor, special instructions, ..."/>
+                              placeholder="ex. floor, entryphone not working, ..."/>
                 </label>
             </td>
             <td>
@@ -63,7 +66,7 @@
                 <br>
                 <label>Notes:
                     <textarea name="receiverNotes" th:field="*{receiver.notes}"
-                              placeholder="ex. floor, special instructions, ..."/>
+                              placeholder="ex. floor, entryphone not working, ..."/>
                 </label>
 
             </td>

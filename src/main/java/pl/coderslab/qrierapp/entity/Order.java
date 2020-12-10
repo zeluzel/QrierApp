@@ -19,10 +19,10 @@ public class Order implements EntityModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Address sender;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Address receiver;
 
     @ManyToOne

@@ -69,6 +69,9 @@ public class DispatcherController {
     @PostMapping("/addOrder")
     public String addOrder(Order newOrder) {
         log.debug("Adding new order: {}", newOrder);
+        addressService.save(newOrder.getSender());
+        addressService.save(newOrder.getReceiver());
+        newOrder.setStatus(OrderStatus.ORDERED);
         orderService.save(newOrder);
         return "redirect:";
     }
